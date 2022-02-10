@@ -1,1 +1,1 @@
-# lms
+# institute

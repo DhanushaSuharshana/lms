@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<?php
+include '../class/include.php';
+include './auth.php';
+?>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Create Page</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-iconaa.png">
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="manifest.json">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#f7a033">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+        <link rel="stylesheet" href="css/vendor.min.css">
+        <link rel="stylesheet" href="css/elephant.min.css">
+        <link rel="stylesheet" href="css/application.min.css">
+        <link rel="stylesheet" href="css/demo.min.css">
+        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body class="layout layout-header-fixed">
+        <?php
+        include './top-header.php';
+        ?>
+        <div class="layout-main">
+            <?php
+            include './navigation.php';
+            ?>
+
+            <div class="layout-content">
+                <div class="layout-content-body">
+                     
+                    <div class="row gutter-xs">
+                        <div class="col-xs-12">
+                            <div class="row hidden">  
+
+                                <div class="col-md-12"> 
+                                    <?php
+                                    if (isset($_GET['message'])) {
+
+                                        $MESSAGE = New Message($_GET['message']);
+                                        ?>
+                                        <div class="alert alert-<?php echo $MESSAGE->status; ?>" role = "alert">
+                                            <?php echo $MESSAGE->description; ?>
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                    <div class="card">
+                                        <div class="card-header"> 
+                                            <strong>Create Page</strong>
+                                        </div>
+                                    </div>
+                                    <form class="demo-form-wrapper card "  method="post" style="padding: 50px"  action="ajax/post-and-get/pages.php">
+                                        <div class="form form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label" for="title">Title: </label>
+                                                <div class="col-sm-11">
+                                                    <input id="title" name="title" class="form-control" type="text"   >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label" for="title">Description: </label>
+                                                <div class="col-sm-11">
+                                                    <textarea  name="description" id="description" class="form-control  description" rows="5"></textarea> 
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3"></div> 
+                                                <div class="col-md-3"></div> 
+                                                <div class="col-md-3"></div> 
+                                                <div class="col-md-3">  
+                                                    <input type="submit" class="btn btn-primary btn-block"  name="create"  value="create" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+
+                                    <strong>Manage Page</strong>
+                                </div>
+                                <div class="card-body">
+                                    <table id="demo-datatables-colreorder-1" class="table table-hover table-striped table-nowrap dataTable" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Title</th> 
+                                                <th>Option</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        $PAGES = new Page(NULL);
+                                        foreach ($PAGES->all() as $key => $pages) {
+                                            $key++;
+                                            ?>
+                                            <tr id="div<?php echo $pages['id'] ?>">
+                                                <td><?php echo $key ?></td>
+                                                <td><?php echo $pages['title'] ?></td>
+
+                                                <td> 
+                                                    <a href="edit-page.php?id=<?php echo $pages['id'] ?>" class="op-link btn btn-sm btn-info"><i class="icon icon-pencil"></i></a>  
+                                                    <a href="#" class="delete-student btn btn-sm btn-danger hidden" data-id="<?php echo $pages['id'] ?>"><i class="waves-effect icon icon-trash" data-type="cancel"></i></a> 
+
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Title</th>
+
+                                                <th>Option</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="js/vendor.min.js"></script>
+        <script src="js/elephant.min.js"></script>
+        <script src="js/application.min.js"></script>
+        <script src="js/demo.min.js"></script>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>        
+        <script src="delete/js/student.js" type="text/javascript"></script>
+        <script src="tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+        <script>
+            tinymce.init({
+                selector: ".description",
+                // ===========================================
+                // INCLUDE THE PLUGIN
+                // ===========================================
+
+                plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table contextmenu paste"
+                ],
+                // ===========================================
+                // PUT PLUGIN'S BUTTON on the toolbar
+                // ===========================================
+
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages",
+                // ===========================================
+                // SET RELATIVE_URLS to FALSE (This is required for images to display properly)
+                // ===========================================
+
+                relative_urls: false
+
+            });
+
+        </script>
+    </body>
+</html>
