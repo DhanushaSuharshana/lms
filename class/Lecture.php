@@ -54,7 +54,7 @@ class Lecture {
 
             $db = new Database();
 
-            $result = mysql_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
             $this->full_name = $result['full_name'];
@@ -119,9 +119,7 @@ class Lecture {
         $result = $db->readQuery($query);
 
         if ($result) {
-            $last_id = mysql_insert_id();
-
-            return $this->__construct($last_id);
+            return mysqli_insert_id($db->DB_CON);
         } else {
             return FALSE;
         }
@@ -136,7 +134,7 @@ class Lecture {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -164,7 +162,7 @@ class Lecture {
         $db = new Database();
         $result = $db->readQuery($query);
         $out_put = '';
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
 
 
             $out_put .= ' <div class="col-md-2 col-sm-4 col-xs-6" style="height: 200px;">	
@@ -202,7 +200,7 @@ class Lecture {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -217,7 +215,7 @@ class Lecture {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -231,7 +229,7 @@ class Lecture {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -246,7 +244,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
 
@@ -271,7 +269,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -287,7 +285,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -369,7 +367,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -385,7 +383,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -401,7 +399,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -506,7 +504,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -538,7 +536,7 @@ class Lecture {
         $query = "SELECT * FROM `lecture` WHERE `id` ='" . $id . "'  AND `status` = 0 ";
 
         $db = new Database();
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
         return $result['id'];
     }
 
@@ -598,7 +596,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
 
@@ -612,7 +610,7 @@ class Lecture {
     public function getLastStudentId() {
         $query = " SELECT `id` FROM `lecture` ORDER BY `id` DESC LIMIT 1";
         $db = new Database();
-        $result = mysql_fetch_assoc($db->readQuery($query));
+        $result = mysqli_fetch_assoc($db->readQuery($query));
 
         return $result['id'];
     }
@@ -644,7 +642,7 @@ class Lecture {
 
             $db = new Database();
 
-            $result = mysql_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->full_name = $result['full_name'];
             $this->email = $result['email'];
@@ -660,7 +658,7 @@ class Lecture {
 
         $db = new Database();
 
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;

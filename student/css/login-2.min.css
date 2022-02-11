@@ -1,0 +1,64 @@
+/*! Custom styles for this template */
+
+html {
+    display: table;
+    height: 100%;
+    width: 100%
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.login {
+    -webkit-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeInUp;
+    -o-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 360px
+}
+
+.login-body {
+    padding: 30px;
+    background-color: rgba(255,255,255,0.9);
+}
+
+.login-brand {
+    display: block;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+}
+.log-bck{
+    background: url(../img/login-bck.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.login-footer {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center
+}
+
+@media (min-width:768px) {
+    .login-body {
+        background-color: rgba(255,255,255,0.9);
+        border: 1px solid #f1f1f1;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+        margin-bottom: 15px;
+        margin-top: 15px
+    }
+}

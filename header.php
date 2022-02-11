@@ -7,7 +7,7 @@
                         <i class="zmdi zmdi-menu zmdi-hc-lg"></i>
                     </button>
                     <nav class="collapse navbar-collapse" id="myNavbar">
-                        <ul>
+                        <!-- <ul>
                             <li class="active">
                                 <a href="index.php">Home</a>
                             </li>
@@ -24,13 +24,13 @@
                             <li><a href="contact.php">Contact</a></li>
                             <li><a href="student/login.php" class="visible-xs">Student Login</a></li>
                             <li><a href="lecture/login.php" class="visible-xs">Lecture Login</a></li>
-                        </ul>
+                        </ul> -->
                     </nav>
                 </div>
-                <a href="course-registration.php" class="blueplay login">Course Registration</a>
-                <a href="student/exam-papers.php" class="blueplay login">Exam Papers</a>
+                <!-- <a href="course-registration.php" class="blueplay login">Course Registration</a> -->
+                <!-- <a href="student/exam-papers.php" class="blueplay login">Exam Papers</a> -->
                 <a href="student/login.php" class="blueplay login  hidden-xs">Student Login</a>
-                <a href="lecture/login.php" class="register  hidden-xs">Lecture Login</a>
+                <!-- <a href="lecture/login.php" class="register  hidden-xs">Lecture Login</a> -->
             </div>
             <h1 class="logo"><a href="index.php"><img src="assets/images/logo.png" alt="Logo" width="85%"></a></h1>
         </div>

@@ -21,6 +21,7 @@
 
 
         <?php include './header-index.php'; ?>
+
         <main>
             <div class="container-fluid categories text-center">	
 
@@ -82,7 +83,7 @@
 
             </div>
 
-            <div class="container categories text-center">	
+            <!-- <div class="container categories text-center">	
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
                         <h3>Categories</h3>
@@ -117,10 +118,10 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
 
-            <div class="container pros" style="margin-top: 0px;">
+            <!-- <div class="container pros" style="margin-top: 0px;">
                 <div class="row">	
                     <div class="col-sm-10 col-sm-offset-1 text-center">
                         <h3 style="margin-top: 0px;">Top Lectures</h3>
@@ -162,9 +163,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="platform text-center" style="margin-top: 30px;">
+            <!-- <div class="platform text-center" style="margin-top: 30px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
@@ -246,7 +247,7 @@
 
         </main>
 
-        <?php include './footer.php'; ?>    
+        <?php include './footer.php'; ?>     -->
 
         <script src="assets/libs/jquery/jquery.js"></script>
         <script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>

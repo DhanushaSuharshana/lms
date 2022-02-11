@@ -23,7 +23,7 @@ Class StudentAnswers
 
             $db = new Database();
 
-            $result = mysql_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
             $this->student = $result['student'];
@@ -51,9 +51,7 @@ Class StudentAnswers
         $result = $db->readQuery($query);
 
         if ($result) {
-            $last_id = mysql_insert_id();
-
-            return $this->__construct($last_id);
+            return mysqli_insert_id($db->DB_CON);
         } else {
             return FALSE;
         }
@@ -67,7 +65,7 @@ Class StudentAnswers
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -108,7 +106,7 @@ Class StudentAnswers
         $query = "SELECT * FROM `student_answer` WHERE `student` = '" . $id . "' AND `question` = '" . $question . "' ORDER BY `id` DESC LIMIT 1";
 
         $db = new Database();
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
         return $result;
     }
 }

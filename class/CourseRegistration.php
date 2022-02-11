@@ -37,7 +37,7 @@ class CourseRegistration
 
             $db = new Database();
 
-            $result = mysql_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
             $this->created_at = $result['created_at'];
@@ -71,7 +71,7 @@ class CourseRegistration
             . $this->city . "', '"
             . $this->phone_number . "', '"
             . $this->mobile_number . "', '"
-            . mysql_real_escape_string($this->school) . "', '"
+            . $this->school . "', '"
             . $this->grade . "', '"
             . $this->dob . "', '"
             . $this->age . "')";
@@ -80,9 +80,7 @@ class CourseRegistration
         $result = $db->readQuery($query);
 
         if ($result) {
-            $last_id = mysql_insert_id();
-
-            return $this->__construct($last_id);
+            return mysqli_insert_id($db->DB_CON);
         } else {
             return FALSE;
         }
@@ -98,7 +96,7 @@ class CourseRegistration
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -114,7 +112,7 @@ class CourseRegistration
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -161,7 +159,7 @@ class CourseRegistration
             . "`city` ='" . $this->city . "', "
             . "`phone_number` ='" . $this->phone_number . "', "
             . "`mobile_number` ='" . $this->mobile_number . "', "
-            . "`school` ='" . mysql_real_escape_string($this->school) . "', "
+            . "`school` ='" . mysqli_real_escape_string($this->school) . "', "
             . "`grade` ='" . $this->grade . "', "
             . "`dob` ='" . $this->dob . "', "
             . "`age` ='" . $this->age . "' "

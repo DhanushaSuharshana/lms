@@ -24,7 +24,7 @@ Class StudentMarks
 
             $db = new Database();
 
-            $result = mysql_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
             $this->student = $result['student'];
@@ -55,9 +55,7 @@ Class StudentMarks
         $result = $db->readQuery($query);
 
         if ($result) {
-            $last_id = mysql_insert_id();
-
-            return $this->__construct($last_id);
+            return mysqli_insert_id($db->DB_CON);
         } else {
             return FALSE;
         }
@@ -71,7 +69,7 @@ Class StudentMarks
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -112,7 +110,7 @@ Class StudentMarks
         $query = "SELECT * FROM `student_marks` WHERE `student` = '" . $id . "' AND `paper` = '" . $paper . "' ORDER BY `id` DESC LIMIT 1";
 
         $db = new Database();
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
         return $result;
     }
     public function getAllStudentsMarksByPaper($paper)
@@ -124,7 +122,7 @@ Class StudentMarks
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 

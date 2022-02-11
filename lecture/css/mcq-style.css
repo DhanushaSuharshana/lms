@@ -1,0 +1,56 @@
+.qu_options {
+    position: absolute;
+    left    : 60px;
+}
+
+.mcq-section .option_ol span li {
+    padding      : 1px 10px;
+    line-height  : 30px;
+    margin-bottom: 5px;
+    color        : #111;
+    background   : #eee;
+}
+
+.mcq-section .option_ol span.correct-li li {
+    border    : 1px solid #0cc418;
+    background: #34dd3f;
+}
+
+.mcq-section .option_ol span.incorrect-li li {
+    border    : 1px solid #c40c0c;
+    background: #dd3434ad;
+}
+
+.mcq-section .option_ol input {
+    margin-top: 9px;
+}
+
+.mcq-section .count-section {
+    border       : 2px solid #0fb9e9;
+    padding      : 10px;
+    height       : 68px;
+    margin-bottom: 25px;
+    background   : #98f5ff;
+    text-align: center;
+}
+
+.topic {
+    font-size  : 14px;
+    color      : black;
+    font-weight: 400;
+}
+
+.count-values {
+    font-size  : 20px;
+    color      : red;
+    font-weight: 600;
+}
+#form-mcq ol li {
+    margin-bottom: 20px;
+}
+#form-mcq .option_ol li {
+    margin-bottom: 5px;
+}
+.question-img-table {
+    width: 100px;
+}

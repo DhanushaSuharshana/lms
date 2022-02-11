@@ -21,7 +21,7 @@ class LectureSubject {
 
             $db = new Database();
 
-            $result = mysql_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
             $this->subject_id = $result['subject_id'];
@@ -41,9 +41,7 @@ class LectureSubject {
         $result = $db->readQuery($query);
 
         if ($result) {
-            $last_id = mysql_insert_id();
-
-            return $this->__construct($last_id);
+            return mysqli_insert_id($db->DB_CON);
         } else {
             return FALSE;
         }
@@ -56,7 +54,7 @@ class LectureSubject {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -81,7 +79,7 @@ class LectureSubject {
 
         $query = 'SELECT `id` FROM `lecture_subject`  WHERE `lecture` ="' . $id . '"';
         $db = new Database();
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -94,7 +92,7 @@ class LectureSubject {
         $query = 'SELECT `id` FROM `lecture_subject`  WHERE `lecture` ="' . $lecturer . '" AND `subject_id` = "' . $id . '"';
 
         $db = new Database();
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -108,7 +106,7 @@ class LectureSubject {
         $query = 'SELECT `id` FROM `student_subjects`  WHERE `subject`="' . $subject . '" AND `student`="' . $id . '"';
 
         $db = new Database();
-        $result = mysql_fetch_array($db->readQuery($query));
+        $result = mysqli_fetch_array($db->readQuery($query));
 
         if (!$result) {
             return FALSE;
@@ -135,7 +133,7 @@ class LectureSubject {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -151,7 +149,7 @@ class LectureSubject {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
