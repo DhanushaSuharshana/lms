@@ -11,57 +11,38 @@
  * @web www.sublime.lk
 
  * */
-class Database {
+class Database
+{
 
-   // private $host = 'localhost';
-   // private $name = 'synoteca_ecollege';
-   // private $user = 'synoteca_main';
-   // private $password = '3rTI#)-vDmAKczXQ-J';
+    //private $host = 'localhost';
+    // private $name = 'slysmjhg_travel';
+    // private $user = 'slysmjhg_travel';
+    // private $password = 'DlIp05;#;-iq';
+    // public $DB_CON = NULL;
+
 
     private $host = 'localhost';
-    private $name = 'institute';
+    private $name = 'lms';
     private $user = 'root';
     private $password = '';
+    public $DB_CON = NULL;
 
-    public function __construct() {
+    public function __construct()
+    {
 
-        mysql_connect($this->host, $this->user, $this->password) or die("Invalid host  or user details");
-
-        mysql_select_db($this->name) or die("Unable to select database");
+        $this->DB_CON = mysqli_connect($this->host, $this->user, $this->password, $this->name);
     }
 
-    public function readQuery($query) {
-
-
-
-        $result = mysql_query($query) or die(mysql_error());
+    public function readQuery($query)
+    {
+        $result = mysqli_query($this->DB_CON, $query) or die(mysqli_error($this->DB_CON));
 
         return $result;
-
-
-
-//        $qu1 = explode(" ", $query)[0];
-//
-//        if ($qu1 === 'SELECT' || $qu1 === 'select') {
-//            $result = mysql_query($query) or die(mysql_error());
-//            return $result;
-//        } else {
-//            if (!isset($_SESSION)) {
-//                session_start();
-//            }
-//
-//            if (
-//                    $_SESSION["LOGIN"] === true &&
-//                    parse_url($_SERVER['HTTP_REFERER'])["host"] == $this->domain &&
-//                    $_SESSION['TOKEN'] == 'Vr-EFV!Fn6qCCUHYF2&cFzLw_thehorizonvilla-H5Dx'
-//            ) {
-//
-//                $result = mysql_query($query) or die(mysql_error());
-//                return $result;
-//            } else {
-//                sendSecurityAlert($this->domain);
-//            }
-//        }
     }
 
+    protected function readStmt($stmt)
+    {
+        $stmt = $stmt->execute() or die($stmt->error);
+        return $stmt;
+    }
 }
