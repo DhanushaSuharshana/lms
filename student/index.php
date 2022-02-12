@@ -12,7 +12,8 @@ $VIDEO_3 = new Page(6);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ecollege.lk Web Learning</title>
+    <title>SLYSC.lk Web Learning</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <meta name="description" content="Elephant is an admin template that helps you build modern Admin Applications, professionally fast! Built on top of Bootstrap, it includes a large collection of HTML, CSS and JS components that are simple to use and easy to customize.">
     <meta property="og:url" content="http://demo.madebytilde.com/elephant">
