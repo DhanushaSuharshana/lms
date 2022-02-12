@@ -14,18 +14,14 @@
                     </li>
 
                     <li class="sidenav-item has-subnav">
-                        <a href="#" aria-haspopup="true">
+                        <a href="view-subjects.php" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-calendar-check-o"></span>
                             <span class="sidenav-label">My Classes</span>
                         </a>
-
-                        <ul class="sidenav level-2 collapse">
-                            <li><a href="view-subjects.php"> <span class="sidenav-icon icon icon-angle-right"></span> Select Your Class</a></li>
-                            <li><a href="manage-select-class.php"> <span class="sidenav-icon icon icon-angle-right"></span> Enter Your Class</a></li>
-                        </ul>
+ 
 
                     </li>
-                    <li class="sidenav-item">
+                    <!-- <li class="sidenav-item">
                         <a href="complete-profile.php" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-book"></span>
                             <span class="sidenav-label">My Subjects</span>
@@ -43,7 +39,7 @@
                             <span class="sidenav-label">Help Center</span>
                         </a>
 
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

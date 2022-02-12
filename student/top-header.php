@@ -168,7 +168,7 @@ $today = date('Y-m-d');
                                 </a>
                             </span>
                         <?php } else if ($date == 'nu') { ?>
-                            Welcome To Ecollege.lk 
+                            Welcome To SLYSC.lk 
                         <?php } else {
                             ?>
                             <span class="d-ib">Lesson on  - <strong style=" color: #0f660c;"> <?php echo $date ?></strong></span>

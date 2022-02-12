@@ -21,7 +21,7 @@ class StudentRegistration {
 
             $db = new Database();
 
-            $result = mysqlii_fetch_array($db->readQuery($query));
+            $result = mysqli_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
             $this->student_id = $result['student_id'];
@@ -59,7 +59,7 @@ class StudentRegistration {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysqlii_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -107,7 +107,7 @@ class StudentRegistration {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysqlii_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -139,7 +139,7 @@ class StudentRegistration {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysqlii_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -154,7 +154,7 @@ class StudentRegistration {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysqlii_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -170,7 +170,7 @@ class StudentRegistration {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysqlii_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 
@@ -185,7 +185,7 @@ class StudentRegistration {
         $result = $db->readQuery($query);
         $array_res = array();
 
-        while ($row = mysqlii_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             array_push($array_res, $row);
         }
 

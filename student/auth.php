@@ -6,13 +6,13 @@ if (!isset($_SESSION)) {
 
 $STUDENT_SUBJECT = new StudentSubject(NULL);
 $STUDENT = new Student(NULL);
-if (!$STUDENT_SUBJECT->checkStudentSubjects($_SESSION['id'])) {
-    redirect('complete-profile.php?message=19');
-} else {
-    if (!$STUDENT->authenticate()) {
-        redirect('login.php');
-    }
-}
+// if (!$STUDENT_SUBJECT->checkStudentSubjects($_SESSION['id'])) {
+//     redirect('view-subjects.php');
+// } else {
+//     if (!$STUDENT->authenticate()) {
+//         redirect('login.php');
+//     }
+// }
 
 
 if (!$STUDENT->authenticate()) {
