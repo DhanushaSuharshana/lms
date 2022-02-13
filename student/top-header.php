@@ -128,7 +128,7 @@ $today = date('Y-m-d');
                             <li><a href="index.php">Dashboard</a></li> 
                             <li><a href="profile.php">Change Profile</a></li>
                             <li><a href="change-password.php">Change Password</a></li>
-                            <li><a href="complete-profile.php">My Subjects</a></li>
+                            <li><a href="view-subjects.php">My Class</a></li>
                             <!--                            <li><a href="education-subject.php">Education Subjects</a></li>-->
                             <li><a href="log-out.php">Sign out</a></li>
 
@@ -158,27 +158,8 @@ $today = date('Y-m-d');
 
                 <div class="title-bar">
                     <h1 class="title-bar-title">
-                        <?php
-                        if ($date == $today) {
-                            ?>
-                            <span class="d-ib">Lesson on Today - <strong style=" color: #0f660c;"> <?php echo $date ?></strong></span>
-                            <span class="d-ib">
-                                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body" data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right" data-toggle="tooltip">
-                                    <span class="sr-only">Add to shortcut list</span>
-                                </a>
-                            </span>
-                        <?php } else if ($date == 'nu') { ?>
-                            Welcome To SLYSC.lk 
-                        <?php } else {
-                            ?>
-                            <span class="d-ib">Lesson on  - <strong style=" color: #0f660c;"> <?php echo $date ?></strong></span>
-                            <span class="d-ib">
-                                <a class="title-bar-shortcut" href="#" title="Add to shortcut list" data-container="body" data-toggle-text="Remove from shortcut list" data-trigger="hover" data-placement="right" data-toggle="tooltip">
-                                    <span class="sr-only">Add to shortcut list</span>
-                                </a>
-                            </span>
-                        <?php }
-                        ?>  
+                            Welcome to slysc.lk
+
                     </h1>
 
 <!--                    <div class="alert alert-danger" role = "alert" id="message" style=" width: 65%;float: right;margin-top: -25px;color: white;padding: 5px 0px 5px 14px;">   </div>-->

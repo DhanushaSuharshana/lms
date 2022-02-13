@@ -43,7 +43,8 @@ class EducationCategory {
                 . $this->image_name . "','"
                 . $this->queue . "')";
 
-
+ 
+        
         $db = new Database();
 
         $result = $db->readQuery($query);

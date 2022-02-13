@@ -5,18 +5,17 @@ $(document).ready(function () {
     $('.card-body').on('click', '.select', function (event) {
         event.preventDefault();
 
-        var class_id = $(this).attr("data-id");
+        var class_id = $(this).attr("data_id");
         var stu_id = $(this).attr("stu_id");
-        var lecture_id = $(this).attr("lecture_id");
-        var sub_id = $(this).attr("sub_id");
+        var lecture_id = '0';
 
         $.ajax({
             url: "ajax/post-and-get/student_class_registration.php",
             type: "POST",
             data: {
                 class_id: class_id,
-                stu_id: stu_id,
                 lecture_id: lecture_id,
+                stu_id: stu_id,
                 option: 'create'
             },
             dataType: "JSON",
@@ -24,13 +23,13 @@ $(document).ready(function () {
 
                 swal({
                     title: "Success!",
-                    text: "Your are added class saved successfully!.....",
+                    text: "Your have been successfully enrolled to this course!.....",
                     type: 'success',
                     timer: 2000,
                     showConfirmButton: false
                 }, function () {
                     setTimeout(function () {
-                        window.location.reload(); 
+                        window.location.reload();
                     }, 1500);
                 });
             },
@@ -44,7 +43,7 @@ $(document).ready(function () {
 
         var id = $(this).attr("data-id");
         var sub_id = $(this).attr("sub_id");
-        
+
         swal({
             title: "Are you sure?",
             text: "Now you are leave this class Room..!",
