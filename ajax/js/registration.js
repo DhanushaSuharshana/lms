@@ -58,7 +58,7 @@ $(document).ready(function() {
                 url: "ajax/post-and-get/registration_check.php",
                 type: 'POST',
                 data: formData,
-                async: false,
+                async: true,
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -75,7 +75,7 @@ $(document).ready(function() {
                             url: "ajax/post-and-get/registration.php",
                             type: 'POST',
                             data: formData,
-                            async: false,
+                            async: true,
                             cache: false,
                             contentType: false,
                             processData: false,
@@ -84,6 +84,7 @@ $(document).ready(function() {
                                 if (result.status == 'error') {
                                     $('#message').text(result.message);
                                 } else {
+                                    $('.someBlock').preloader();
 
                                     $.ajax({
                                         url: "ajax/post-and-get/mobile-verify.php",
@@ -94,17 +95,18 @@ $(document).ready(function() {
                                         },
                                         dataType: "JSON",
                                         success: function(result) {
+                                            $('.someBlock').preloader('remove');
 
                                             if (result.status == 'success') {
                                                 window.swal({
                                                     title: "Please wait...!",
                                                     text: "it may take few seconds...!",
-                                                    imageUrl: "assets/images/tenor.gif",
+                                                    imageUrl: "assest/img/tenor.gif",
                                                     showConfirmButton: false,
                                                     allowOutsideClick: false
                                                 });
                                                 setTimeout(function() {
-                                                    window.location.href = "mobile-verify.php";
+                                                    window.location.href = "mobile-verify.php?id=" + result.id;
                                                 }, 1000);
                                             } else {
                                                 swal({

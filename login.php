@@ -17,32 +17,44 @@
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="assest/css/preloader.css">
+  <link rel="stylesheet" href="assest/css/jquery.formValid.css">
+  <link rel="stylesheet" href="assest/css/sweetalert.css">
+
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page someBlock">
   <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="#" class="h1"> 
+        <a href="#" class="h1">
 
-        <img src="./assest/img/logo.png" width="50%">
+          <img src="./assest/img/logo.png" width="50%">
         </a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="#" method="post">
+        <form action="#" method="post" id="form">
 
           <div class="form-group">
             <label for="exampleInputEmail1">Student Id / Email / Mobile Number</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Student Id / Email / Mobile Number">
+            <input type="text" class="form-control" id="student_id" name="student_id" data-field="student_id" placeholder="Enter Student Id / Email / Mobile Number">
+            <div class="valid-message"></div>
+
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter password">
-          </div> 
+            <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" data-field="password">
+            <div class="valid-message"></div>
+          </div>
+          <div class="form-group">
+              <div class="text-center text-danger btn-padding font-size-new" id="message"></div>
+            </div>
           <div class="row">
+           
             <div class="col-8">
               <div class="icheck-primary">
                 <input type="checkbox" id="remember">
@@ -59,24 +71,28 @@
           </div>
         </form>
         <p class="mb-1">
-          <a href="forgot-password.html">I forgot password</a>
+          <a href="#">I forgot password</a>
         </p>
         <p class="mb-0">
           <a href="registration.php" class="text-center">Register a new membership</a>
         </p>
       </div>
-      <!-- /.card-body -->
     </div>
-    <!-- /.card -->
   </div>
   <!-- /.login-box -->
 
-  <!-- jQuery -->
+
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
+  <script src="assest/js/jquery.preloader.min.js"></script>
+  <script src="assest/js/jquery.formValid.js"></script>
+
   <script src="dist/js/adminlte.min.js"></script>
+  <script src="ajax/js/login.js"></script>
+  <script src="assest/js/sweetalert.min.js"></script>
+
 </body>
 
 

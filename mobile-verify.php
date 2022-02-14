@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+
+$id = $_GET['id'];
+
+?>
 <html lang="en">
 
 <!-- Added by HTTrack -->
@@ -16,10 +21,13 @@
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="assest/css/sweetalert.css">
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="assest/css/preloader.css">
+
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page someBlock">
   <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
@@ -30,40 +38,29 @@
         </a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Mobily Verify</p>
+        <p class="login-box-msg">Please check your mobile <br>
+          and enter your Mobily Verify code</p>
 
         <form action="#" method="post">
 
           <div class="form-group">
             <label for="verification_code">Verification Code</label>
-            <input type="email" class="form-control" id="verification_code" placeholder="Enter Verification Code">
+            <input type="text" class="form-control" id="code" name="code" placeholder="Enter Verification Code">
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter password">
-          </div>
+
           <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                  Remember Me
-                </label>
-              </div>
+            <div class="col-6">
+              <input type="hidden" id="student" value="<?php echo $id ?>">
+
             </div>
             <!-- /.col -->
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <div class="col-6">
+              <button class="btn btn-primary btn-block" id="verify">Verify Now</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
-        <p class="mb-1">
-          <a href="forgot-password.html">I forgot password</a>
-        </p>
-        <p class="mb-0">
-          <a href="registration.php" class="text-center">Register a new membership</a>
-        </p>
+
       </div>
       <!-- /.card-body -->
     </div>
@@ -77,6 +74,11 @@
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
+  <script src="ajax/js/mobile-verify.js"></script>
+  <script src="assest/js/sweetalert.min.js"></script>
+  <script src="assest/js/jquery.preloader.min.js"></script>
+
+
 </body>
 
 

@@ -8,11 +8,12 @@ if ($_POST['action'] === 'MOBILECODE') {
 
     if ($STUDENT->GenarateMobileCode()) {
 
-        $status = $STUDENT->sendSMS('E College', $STUDENT->phone_number, "Your STUDENT ID is " . $STUDENT->student_id . " and your account verification code is " . $STUDENT->phone_code);
+        $status = $STUDENT->sendSMS('SLYSC', $STUDENT->phone_number, "Your STUDENT ID is " . $STUDENT->student_id . " and your account verification code is " . $STUDENT->phone_code);
 
         if ($status) {
             header('Content-Type: application/json; charset=UTF8');
             $reture['status'] = 'success';
+            $reture['id'] = $_POST['id'];
             echo json_encode($reture);
             exit();
         }
@@ -37,6 +38,3 @@ if ($_POST['action'] === 'MOBILEVERYFY') {
         exit();
     }
 }
-
-
-
