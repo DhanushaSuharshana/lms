@@ -1,6 +1,6 @@
 <?php
 
-include '../../../class/include.php';
+include '../../class/include.php';
 
 if ($_POST['action'] === 'MOBILECODE') {
 

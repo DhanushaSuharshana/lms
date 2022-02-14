@@ -22,7 +22,7 @@ class Database
 
 
     private $host = 'localhost';
-    private $name = 'lms';
+    private $name = 'slysc_lms';
     private $user = 'root';
     private $password = '';
     public $DB_CON = NULL;
@@ -37,6 +37,12 @@ class Database
     {
         $result = mysqli_query($this->DB_CON, $query) or die(mysqli_error($this->DB_CON));
 
+        return $result;
+    }
+
+    public function readLastQuery()
+    {
+        $result = mysqli_insert_id($this->DB_CON);
         return $result;
     }
 
