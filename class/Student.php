@@ -76,7 +76,7 @@ class Student
             . $this->city . "', '"
             . $this->phone_number . "', '"
             . $this->password . "')";
- 
+
 
         $db = new Database();
 
@@ -155,14 +155,14 @@ class Student
             return FALSE;
         } else {
 
+
             $this->id = $result['id'];
             $this->setAuthToken($result['id']);
-            $this->setLastLogin($this->id);
-            // $this->updateOnlineStatus($this->id, 1);
+            $this->setLastLogin($this->id); 
             $student = $this->__construct($this->id);
             $this->setUserSession($student);
 
-            return $student;
+            return $student->id;
         }
     }
 
@@ -265,16 +265,14 @@ class Student
     public function authenticate()
     {
 
-        //        if (!isset($_SESSION)) {
-        //
-        //            session_start();
-        //        }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
 
         $id = NULL;
         $authToken = NULL;
 
         if (isset($_SESSION["id"])) {
-
             $id = $_SESSION["id"];
         }
 
@@ -284,6 +282,7 @@ class Student
         }
 
         $query = "SELECT `id` FROM `student` WHERE `id`= '" . $id . "' AND `authToken`= '" . $authToken . "'";
+
 
         $db = new Database();
 
@@ -298,23 +297,14 @@ class Student
 
     public function logOut()
     {
-        if (!isset($_SESSION)) {
 
+        if (!isset($_SESSION)) {
             session_start();
         }
 
-        $STUDENT = new Student(NULL);
-
-
-
         unset($_SESSION["id"]);
-        unset($_SESSION["full_name"]);
-        unset($_SESSION["email"]);
         unset($_SESSION["student_id"]);
-        unset($_SESSION["nic_number"]);
         unset($_SESSION["authToken"]);
-        unset($_SESSION["level"]);
-        unset($_SESSION["image_name"]);
 
         return TRUE;
     }
@@ -327,16 +317,10 @@ class Student
 
             session_start();
         }
-        $_SESSION["id"] = $student['id'];
-        $_SESSION["student_id"] = $student['student_id'];
-        $_SESSION["email"] = $student['email'];
-        $_SESSION["nic_number"] = $student['nic_number'];
-        $_SESSION["full_name"] = $student['full_name'];
-        $_SESSION["authToken"] = $student['authToken'];
-        $_SESSION["lastLogin"] = $student['lastLogin'];
-
+        $_SESSION["id"] = $student->id;
+        $_SESSION["student_id"] = $student->student_id;
+        $_SESSION["authToken"] =  $student->authToken;       
         $_SESSION['login_time'] = time();
-        $_SESSION['image_name'] = $student['image_name'];
     }
 
     private function setAuthToken($id)
@@ -345,7 +329,7 @@ class Student
         $authToken = md5(uniqid(rand(), true));
 
         $query = "UPDATE `student` SET `authToken` ='" . $authToken . "' WHERE `id`='" . $id . "'";
-
+         
         $db = new Database();
 
         if ($db->readQuery($query)) {
@@ -396,7 +380,7 @@ class Student
 
         $now = date('Y-m-d H:i:s');
 
-        $query = "UPDATE `student` SET `lastLogin` ='" . $now . "' AND `is_online` = 1 WHERE `id`='" . $id . "'";
+        $query = "UPDATE `student` SET `lastLogin` ='" . $now . "' WHERE `id`='" . $id . "'";
 
         $db = new Database();
 

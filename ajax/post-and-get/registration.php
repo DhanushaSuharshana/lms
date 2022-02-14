@@ -24,6 +24,7 @@ if ($_POST['password'] != $_POST['com_password']) {
     if ($STUDENT->id) {
         $STUDENT->login($STUDENT->student_id, $STUDENT->password);
         $response['status'] = 'success';
+        $response['id'] = $STUDENT->id;
         echo json_encode($response);
         exit();
     } else {

@@ -26,11 +26,10 @@ $LAST_ID = $LAST_ID + 1;
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="stylesheet" href="assest/css/preloader.css">
   <link rel="stylesheet" href="assest/css/jquery.formValid.css">
-
-
+  <link rel="stylesheet" href="assest/css/sweetalert.css"> 
 </head>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page someBlock">
   <div class="register-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
@@ -129,12 +128,12 @@ $LAST_ID = $LAST_ID + 1;
             <div class="col-4">
               <button type="submit" class="btn btn-primary btn-block" id="next">Next</button>
             </div>
-      
+
           </div>
         </form>
 
 
-        
+
       </div>
     </div>
   </div>
@@ -151,7 +150,8 @@ $LAST_ID = $LAST_ID + 1;
   <script src="js/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
   <script src="ajax/js/city.js"></script>
   <script src="ajax/js/registration.js"></script>
-
+  <script src="assest/js/sweetalert.min.js"></script>
+  
   <script>
     $(function() {
       //Initialize Select2 Elements
