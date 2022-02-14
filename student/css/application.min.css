@@ -292,7 +292,7 @@ html {
 }
 
 .navbar-default .navbar-header {
-    background-color: #e5e7eb
+    background-color: #131f2f;
 }
 
 .navbar-default .navbar-toggler .arrow-up:after,
@@ -947,8 +947,10 @@ html {
     .navbar-toggleable {
         margin-left: 240px;
         -webkit-transition: margin-left .3s;
-        -o-transition: margin-left .3s;
-        transition: margin-left .3s
+        -o-transition     : margin-left .3s;
+        transition        : margin-left .3s;
+        background-color: #fff;
+
     }
     .layout-sidebar-collapsed .navbar-header {
         overflow: hidden;

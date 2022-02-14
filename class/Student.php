@@ -346,10 +346,10 @@ class Student
     public function authenticate()
     {
 
-        if (!isset($_SESSION)) {
-
-            session_start();
-        }
+//        if (!isset($_SESSION)) {
+//
+//            session_start();
+//        }
 
         $id = NULL;
         $authToken = NULL;

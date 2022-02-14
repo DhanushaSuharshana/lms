@@ -8,7 +8,9 @@ if (isset($_POST['create'])) {
     $CATEGORY = new EducationCategory(NULL);
 
     $CATEGORY->name = $_POST['name'];
-    $dir_dest = '../../../upload/class/mcq/';
+    $dir_dest = '../../../upload/category/';
+
+    
 
     $handle = new Upload($_FILES['image_name']);
 
@@ -19,8 +21,8 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = Helper::randamId();
-        $handle->image_x = 150;
-        $handle->image_y = 150;
+        $handle->image_x = 400;
+        $handle->image_y = 400;
 
         $handle->Process($dir_dest);
 
@@ -29,8 +31,8 @@ if (isset($_POST['create'])) {
             $imgName = $handle->file_dst_name;
         }
     }
-
-    $CATEGORY->image_name = $imgName;
+ 
+    $CATEGORY->image_name = $handle->file_dst_name;
 
     $CATEGORY->create();
     $result = [
@@ -57,8 +59,8 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $_POST ["oldImageName"];
-        $handle->image_x = 150;
-        $handle->image_y = 150;
+        $handle->image_x = 400;
+        $handle->image_y = 400;
 
         $handle->Process($dir_dest);
 

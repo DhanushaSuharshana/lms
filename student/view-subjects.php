@@ -8,7 +8,7 @@ include_once(dirname(__FILE__) . '/auth.php');
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>View Subject - Ecollage.lk   </title>
+        <title>View Subject - SLYSC.lk   </title>
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
         <meta property="og:url" content="http://demo.madebytilde.com/elephant">
         <meta property="og:type" content="website">
@@ -36,50 +36,43 @@ include_once(dirname(__FILE__) . '/auth.php');
         <div class="layout-main">
             <?php include './navigation.php'; ?>
             <div class="layout-content">
-                <div class="layout-content-body">                    
+                <div class="layout-content-body" style="margin-top: 20px">                    
 
                     <div class="row gutter-xs">
                         <?php
-                        $STUDENT_SUBJECT = new StudentSubject(NULL);
-                        foreach ($STUDENT_SUBJECT->getSubjectsByStudent($_SESSION['id']) as $student_subject) {
-                            $EDUCATIN_SUBJECT = new EducationSubject($student_subject['subject']);
-                            $EDUCATIN_SUB_CAT = new EducationSubCategory($EDUCATIN_SUBJECT->sub_category);
+                        $EDUCSTION_CATEGORY = new EducationCategory(NULL);
+                        $Registration_class = new StudentRegistration(NULL);
+                        foreach ($EDUCSTION_CATEGORY->all() as $education_category) {
                             ?>
-
                             <div class="col-md-3">
                                 <div class="card ">
                                     <div class="card-image">
-
-                                        <a class="card-link" href="select-lectures.php?id=<?php echo $student_subject['subject'] ?>">
-
-                                            <img class="card-img-top img-responsive" src="img/color.jpg"   style="width: 100%">
-
+                                        <a class="card-link" href="">
+                                            <img class="card-img-top img-responsive" src="../upload/category/<?php echo $education_category['image_name'] ?>"   style="width: 100%">
                                         </a>
-
                                     </div>
-
-                                    <div class="card-body">
-                                        <a class="card-link" href="select-lectures.php?id=<?php echo $student_subject['subject'] ?>">
-                                            <div class="overlay-content overlay-top text-center" style="margin-top: -160px;">
-                                                <span class="label  " style="font-size: 22px;border-radius: 0px;text-align: center; padding: 0px"> 
-                                                    <?php echo $EDUCATIN_SUBJECT->name;
-                                                    ?>
-                                                </span> 
-                                            </div>
-                                        </a>
-                                        <h3 class="card-title text-center" style="margin-top: 10px"><?php echo $EDUCATIN_SUBJECT->name ?></h3>
-                                        <h5 class="card-title text-center"><?php echo $EDUCATIN_SUB_CAT->name ?></h5>
-                                        <h6 class="card-subtitle text-center"> <span class="icon icon-users icon-1x"></span> -  <b class="text-danger"> <?php
-                                            $count = count(LectureClass::getLectureClassesBySubjectId($student_subject['subject']));
-                                            echo $count;
-                                            ?> </b>Available Lecture Classes</h6>
-
-                                        <a class="card-link" href="select-lectures.php?id=<?php echo $student_subject['subject'] ?>">
-                                            <center>
-                                                <p class="btn btn-success btn-block" style="width: 80%" > Select Your Lectures
-                                                </p>
-                                            </center> 
-                                        </a>
+                                    <div class="card-body" style="padding-bottom: 20px">
+                                        <h3 class="card-title text-center" style="margin-top: 10px">
+                                            <?php echo $education_category['name'] ?>
+                                        </h3>
+                                        <?php
+                                        if ($Registration_class->getRegistrationClassesByStudent($education_category['id'], $_SESSION["id"])) {
+                                            ?>
+                                            <a class="card-link" href="">
+                                                <center>
+                                                    <button class="btn btn-info btn-block" style="width: 80%" disabled="true"> Enrolled
+                                                    </button>
+                                                </center> 
+                                            </a>
+                                        <?php } else { ?>
+                                            <a class="card-link" href="">
+                                                <center>
+                                                    <p class="btn btn-success btn-block select" data_id="<?php echo $education_category['id'] ?>" stu_id="<?php echo $_SESSION["id"] ?>" style="width: 80%" > Enroll Now
+                                                    </p>
+                                                </center> 
+                                            </a>
+                                        <?php }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
