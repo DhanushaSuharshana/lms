@@ -18,25 +18,20 @@ class Student
     public $full_name;
     public $student_id;
     public $email;
-    public $nic_number;
-    public $gender;
-    public $age;
     public $city;
     public $phone_number;
-    public $address;
     public $password;
     public $authToken;
     public $lastLogin;
     public $status;
     public $level;
     public $image_name;
-    public $nic_front;
-    public $nic_back;
     public $phone_code;
     public $phone_verification;
     public $resetcode;
     public $is_online;
     public $queue;
+
 
     public function __construct($id)
     {
@@ -44,7 +39,6 @@ class Student
         if ($id) {
 
             $query = "SELECT * FROM `student` WHERE `id`=" . $id;
-
             $db = new Database();
 
             $result = mysqli_fetch_array($db->readQuery($query));
@@ -53,51 +47,43 @@ class Student
             $this->full_name = $result['full_name'];
             $this->student_id = $result['student_id'];
             $this->email = $result['email'];
-            $this->nic_number = $result['nic_number'];
-            $this->gender = $result['gender'];
-            $this->age = $result['age'];
             $this->city = $result['city'];
             $this->phone_number = $result['phone_number'];
-            $this->address = $result['address'];
             $this->password = $result['password'];
             $this->authToken = $result['authToken'];
             $this->lastLogin = $result['lastLogin'];
             $this->status = $result['status'];
-            $this->level = $result['level'];
             $this->image_name = $result['image_name'];
-            $this->nic_front = $result['nic_front'];
-            $this->nic_back = $result['nic_back'];
             $this->phone_code = $result['phone_code'];
             $this->phone_verification = $result['phone_verification'];
             $this->resetcode = $result['resetcode'];
             $this->is_online = $result['is_online'];
-            $this->queue = $result['queue'];
 
-            return $result;
+
+
+            return $this;
         }
     }
+
 
     public function create()
     {
 
-        $query = "INSERT INTO `student` (`full_name`, `student_id`, `email`,`nic_number`,`gender`,`age`,`city`,`phone_number`,`address`,`password`) VALUES  ('"
+        $query = "INSERT INTO `student` (`full_name`, `student_id`, `email`,`city`,`phone_number`,`password`) VALUES  ('"
             . $this->full_name . "','"
             . $this->student_id . "', '"
             . $this->email . "', '"
-            . $this->nic_number . "', '"
-            . $this->gender . "', '"
-            . $this->age . "', '"
             . $this->city . "', '"
             . $this->phone_number . "', '"
-            . $this->address . "', '"
             . $this->password . "')";
+ 
 
         $db = new Database();
 
         $result = $db->readQuery($query);
 
         if ($result) {
-            return mysqli_insert_id($db->DB_CON);
+            return $db->readLastQuery();
         } else {
             return FALSE;
         }
@@ -152,27 +138,13 @@ class Student
         return $array_res;
     }
 
-    public function getAllMembersWithoutThis($student)
-    {
-
-        $query = "SELECT * FROM `student` WHERE `id` <> '" . $member . "' AND `status` = 1 AND `is_suspend` = 0";
-        $db = new Database();
-        $result = $db->readQuery($query);
-        $array_res = array();
-
-        while ($row = mysqli_fetch_array($result)) {
-            array_push($array_res, $row);
-        }
-
-        return $array_res;
-    }
 
     public function login($student_id, $password)
     {
 
         $enPass = md5($password);
 
-        $query = "SELECT `id`,`full_name`,`student_id`,`email`, `nic_number`,`age` FROM `student` WHERE (`student_id`= '" . $student_id . "' OR `phone_number` = '" . $student_id . "' OR `email` = '" . $student_id . "') AND `password`= '" . $enPass . "'";
+        $query = "SELECT `id`,`full_name`,`student_id`,`email` FROM `student` WHERE (`student_id`= '" . $student_id . "' OR `phone_number` = '" . $student_id . "' OR `email` = '" . $student_id . "') AND `password`= '" . $enPass . "'";
 
         $db = new Database();
 
@@ -186,7 +158,7 @@ class Student
             $this->id = $result['id'];
             $this->setAuthToken($result['id']);
             $this->setLastLogin($this->id);
-            $this->updateOnlineStatus($this->id, 1);
+            // $this->updateOnlineStatus($this->id, 1);
             $student = $this->__construct($this->id);
             $this->setUserSession($student);
 
@@ -212,23 +184,7 @@ class Student
         }
     }
 
-    public function updateOnlineStatus($id, $status)
-    {
 
-        $query = "UPDATE  `student` SET "
-            . "`is_online` ='" . $status . "' "
-            . "WHERE `id` = '" . $id . "'";
-
-        $db = new Database();
-
-        $result = $db->readQuery($query);
-
-        if ($result) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
     public function changePassword($id, $password)
     {
 
@@ -267,43 +223,6 @@ class Student
         }
     }
 
-    public function updateNicImagesBack($student, $nic_back)
-    {
-
-        $query = "UPDATE  `student` SET "
-            . "`nic_back` ='" . $nic_back . "' "
-            . "WHERE `id` = '" . $student . "'";
-
-
-        $db = new Database();
-
-        $result = $db->readQuery($query);
-
-        if ($result) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
-
-    public function updateNicImagesFront($student, $nic_front)
-    {
-
-        $query = "UPDATE  `student` SET "
-            . "`nic_front` ='" . $nic_front . "' "
-            . "WHERE `id` = '" . $student . "'";
-
-
-        $db = new Database();
-
-        $result = $db->readQuery($query);
-
-        if ($result) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
 
     public function checkMobileVerificationCode($code)
     {
@@ -346,10 +265,10 @@ class Student
     public function authenticate()
     {
 
-//        if (!isset($_SESSION)) {
-//
-//            session_start();
-//        }
+        //        if (!isset($_SESSION)) {
+        //
+        //            session_start();
+        //        }
 
         $id = NULL;
         $authToken = NULL;
@@ -385,7 +304,7 @@ class Student
         }
 
         $STUDENT = new Student(NULL);
-        $STUDENT->updateOnlineStatus($_SESSION["id"], 0);
+
 
 
         unset($_SESSION["id"]);
@@ -400,15 +319,6 @@ class Student
         return TRUE;
     }
 
-    public function checkLogin($id)
-    {
-
-        $query = "SELECT * FROM `student` WHERE `id` ='" . $id . "'  AND `status` = 0 ";
-
-        $db = new Database();
-        $result = mysqli_fetch_array($db->readQuery($query));
-        return $result['id'];
-    }
 
     private function setUserSession($student)
     {
@@ -746,62 +656,6 @@ class Student
         } else {
 
             return FALSE;
-        }
-    }
-
-    public function delete()
-    {
-
-
-
-        $this->deletePost();
-
-
-        if ($this->image_name) {
-            unlink(Helper::getSitePath() . "upload/student/profile/" . $this->image_name);
-        } elseif ($this->nic_front || $this->image_name) {
-            unlink(Helper::getSitePath() . "upload/student/nic_card/front/" . $this->nic_front);
-            unlink(Helper::getSitePath() . "upload/student/nic_card/front/thumb/" . $this->nic_front);
-            unlink(Helper::getSitePath() . "upload/student/nic_card/back/thumb/" . $this->nic_back);
-            unlink(Helper::getSitePath() . "upload/student/nic_card/back/" . $this->nic_back);
-        }
-
-
-        $query = 'DELETE FROM `student` WHERE id="' . $this->id . '"';
-
-
-        $db = new Database();
-
-
-
-        return $db->readQuery($query);
-    }
-
-    public function deletePost()
-    {
-
-
-
-        $POST = new Post(NULL);
-        $POST_IMAGES = new PostImage(NULL);
-
-        foreach ($POST->getPostsByStudent($this->id) as $post) {
-
-            foreach ($POST_IMAGES->getPhotosByPostId($post['id']) as $post_images) {
-                unlink(Helper::getSitePath() . "upload/post/" . $post_images['image_name']);
-
-                unlink(Helper::getSitePath() . "upload/post/thumb/" . $post_images['image_name']);
-                unlink(Helper::getSitePath() . "upload/post/thumb2/" . $post_images['image_name']);
-
-
-
-                $POST_IMAGES->id = $post_images["id"];
-
-                $POST_IMAGES->delete();
-            }
-            $POST->id = $post["id"];
-
-            $POST->delete();
         }
     }
 }

@@ -4,7 +4,7 @@ include '../../class/include.php';
 
 $STUDENT = new Student(NULL);
 
-$student_id = filter_var($_POST['student_id'], FILTER_SANITIZE_STRING);
+$student_id = $_POST['student_id'];
 $password = $_POST['password'];
 
 
@@ -17,7 +17,4 @@ if ($STUDENT->login($student_id, $password)) {
     $response['message'] = "Student ID or Password went wrong.";
     echo json_encode($response);
     exit();
-     
 }
-?>
- 
