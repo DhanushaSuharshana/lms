@@ -4,10 +4,12 @@ include_once(dirname(__FILE__) . '/Database.php');
 include_once(dirname(__FILE__) . '/User.php');
 include_once(dirname(__FILE__) . '/Student.php');
 include_once(dirname(__FILE__) . '/Message.php');
+include_once(dirname(__FILE__) . '/Helper.php');
 include_once(dirname(__FILE__) . '/City.php');
 include_once(dirname(__FILE__) . '/District.php');
 include_once(dirname(__FILE__) . '/Upload.php'); 
 include_once(dirname(__FILE__) . '/Setting.php');
+include_once(dirname(__FILE__) . '/Course.php');
 
 function dd($data) {
 
