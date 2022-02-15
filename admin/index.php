@@ -55,8 +55,8 @@ include_once(dirname(__FILE__) . '/auth.php');
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">ReadX</a></li>
-                                            <li class="breadcrumb-item active">Blog CMS</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">SLYSC</a></li>
+                                            <li class="breadcrumb-item active">Home</li>
                                         </ol>
                                     </div>
 
@@ -114,7 +114,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <div class="col-sm-8">
                                                 <p class="text-white font-size-18">View the <b>Website</b> Front Design <i class="mdi mdi-arrow-right"></i></p>
                                                 <div class="mt-4">
-                                                    <a href="http://readx.slysc.lk/" target="_blank" class="btn btn-info  waves-effect waves-light">View Website</a>
+                                                    <a href="http://lms.slysc.lk/" target="_blank" class="btn btn-info  waves-effect waves-light">View Website</a>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">

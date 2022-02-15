@@ -121,9 +121,8 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                         <div class="card-body">
                                                             <h4 class="card-title mb-3"><?php echo $course['title'] ?></h4>
                                                             <div class="badge bg-pill bg-soft-success font-size-14" type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg-<?php echo $course['id']; ?>"><i class="fas fa-pencil-alt p-1"></i></div> |
-                                                            <a href="arrange-blog-type.php" class="badge bg-pill bg-soft-primary font-size-14"><i class="fas fa-exchange-alt  p-1"></i></a> 
-
-    <!--                                                            <div class="badge bg-pill bg-soft-danger font-size-14"><i class="fas fa-trash-alt p-1"></i></div>-->
+                                                            <a href="arrange-blog-type.php" class="badge bg-pill bg-soft-primary font-size-14"><i class="fas fa-exchange-alt  p-1"></i></a> |
+                                                            <a href="manage-student.php?id=<?php echo $course['id']?>" class="badge bg-pill bg-soft-purple font-size-14"><i class="fas fa-user p-1"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>

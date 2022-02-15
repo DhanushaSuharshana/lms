@@ -68,11 +68,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-news"></i>
-                        <span>Blog</span>
+                        <span>Students</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="create-blog.php">Add New Blog</a></li>
-                        <li><a href="manage-blogs.php">Manage Blogs</a></li>
+                        <!--                        <li><a href="create-blog.php">Add New Blog</a></li>-->
+                        <li><a href="manage-all-student.php">Manage All</a></li>
                     </ul>
                 </li> 
 
