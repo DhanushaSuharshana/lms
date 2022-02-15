@@ -22,7 +22,7 @@ class Database
 
 
     private $host = 'localhost';
-    private $name = 'lms';
+    private $name = 'slysc_lms';
     private $user = 'root';
     private $password = '';
     public $DB_CON = NULL;
