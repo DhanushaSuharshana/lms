@@ -11,8 +11,7 @@
  *
  * @author User
  */
-class Student
-{
+class Student {
 
     public $id;
     public $full_name;
@@ -32,9 +31,7 @@ class Student
     public $is_online;
     public $queue;
 
-
-    public function __construct($id)
-    {
+    public function __construct($id) {
 
         if ($id) {
 
@@ -59,24 +56,19 @@ class Student
             $this->resetcode = $result['resetcode'];
             $this->is_online = $result['is_online'];
 
-
-
             return $this;
         }
     }
 
-
-    public function create()
-    {
+    public function create() {
 
         $query = "INSERT INTO `student` (`full_name`, `student_id`, `email`,`city`,`phone_number`,`password`) VALUES  ('"
-            . $this->full_name . "','"
-            . $this->student_id . "', '"
-            . $this->email . "', '"
-            . $this->city . "', '"
-            . $this->phone_number . "', '"
-            . $this->password . "')";
-
+                . $this->full_name . "','"
+                . $this->student_id . "', '"
+                . $this->email . "', '"
+                . $this->city . "', '"
+                . $this->phone_number . "', '"
+                . $this->password . "')";
 
         $db = new Database();
 
@@ -89,8 +81,7 @@ class Student
         }
     }
 
-    public function all()
-    {
+    public function all() {
 
         $query = "SELECT * FROM `student`  ORDER BY `id` DESC";
 
@@ -106,8 +97,7 @@ class Student
         return $array_res;
     }
 
-    public function getActiveStudent()
-    {
+    public function getActiveStudent() {
 
         $query = "SELECT * FROM `student` WHERE `status` = 1 ORDER BY `id` DESC";
         $db = new Database();
@@ -122,8 +112,7 @@ class Student
         return $array_res;
     }
 
-    public function getInActiveStudent()
-    {
+    public function getInActiveStudent() {
 
         $query = "SELECT * FROM `student` WHERE `status` = 0 ORDER BY `id` DESC";
         $db = new Database();
@@ -138,9 +127,27 @@ class Student
         return $array_res;
     }
 
+    public function login2($student_id, $password) {
 
-    public function login($student_id, $password)
-    {
+        $query = "SELECT `id`,`full_name`,`student_id`,`email` FROM `student` WHERE (`student_id`= '" . $student_id . "' OR `phone_number` = '" . $student_id . "' OR `email` = '" . $student_id . "') AND `password`= '" . $password . "'";
+
+        $db = new Database();
+
+        $result = mysqli_fetch_array($db->readQuery($query));
+
+        if (!$result) {
+            return FALSE;
+        } else {
+            $this->id = $result['id'];
+            $this->setAuthToken($result['id']);
+            $this->setLastLogin($this->id);
+            $student = $this->__construct($this->id);
+            $this->setUserSession($student);
+            return $student->id;
+        }
+    }
+
+    public function login($student_id, $password) {
 
         $enPass = md5($password);
 
@@ -158,7 +165,7 @@ class Student
 
             $this->id = $result['id'];
             $this->setAuthToken($result['id']);
-            $this->setLastLogin($this->id); 
+            $this->setLastLogin($this->id);
             $student = $this->__construct($this->id);
             $this->setUserSession($student);
 
@@ -166,8 +173,7 @@ class Student
         }
     }
 
-    public function checkOldPass($id, $password)
-    {
+    public function checkOldPass($id, $password) {
 
         $enPass = md5($password);
 
@@ -184,15 +190,13 @@ class Student
         }
     }
 
-
-    public function changePassword($id, $password)
-    {
+    public function changePassword($id, $password) {
 
         $enPass = md5($password);
 
         $query = "UPDATE  `student` SET "
-            . "`password` ='" . $enPass . "' "
-            . "WHERE `id` = '" . $id . "'";
+                . "`password` ='" . $enPass . "' "
+                . "WHERE `id` = '" . $id . "'";
 
         $db = new Database();
 
@@ -205,12 +209,11 @@ class Student
         }
     }
 
-    public function ChangeProPic($student, $file)
-    {
+    public function ChangeProPic($student, $file) {
 
         $query = "UPDATE  `student` SET "
-            . "`image_name` ='" . $file . "' "
-            . "WHERE `id` = '" . $student . "'";
+                . "`image_name` ='" . $file . "' "
+                . "WHERE `id` = '" . $student . "'";
 
         $db = new Database();
 
@@ -223,9 +226,7 @@ class Student
         }
     }
 
-
-    public function checkMobileVerificationCode($code)
-    {
+    public function checkMobileVerificationCode($code) {
 
 
         $query = "SELECT * FROM `student` WHERE `phone_code` = '" . $code . "' AND `id`= '" . $this->id . "'";
@@ -241,13 +242,11 @@ class Student
         }
     }
 
-    public function updateMobileVerification()
-    {
+    public function updateMobileVerification() {
 
         $query = "UPDATE  `student` SET "
-            . "`phone_verification` ='" . $this->phone_verification . "' "
-            . "WHERE `id` = '" . $this->id . "'";
-
+                . "`phone_verification` ='" . $this->phone_verification . "' "
+                . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
 
@@ -262,8 +261,7 @@ class Student
         }
     }
 
-    public function authenticate()
-    {
+    public function authenticate() {
 
         if (!isset($_SESSION)) {
             session_start();
@@ -283,7 +281,6 @@ class Student
 
         $query = "SELECT `id` FROM `student` WHERE `id`= '" . $id . "' AND `authToken`= '" . $authToken . "'";
 
-
         $db = new Database();
 
         $result = mysqli_fetch_array($db->readQuery($query));
@@ -295,8 +292,7 @@ class Student
         }
     }
 
-    public function logOut()
-    {
+    public function logOut() {
 
         if (!isset($_SESSION)) {
             session_start();
@@ -309,9 +305,7 @@ class Student
         return TRUE;
     }
 
-
-    private function setUserSession($student)
-    {
+    private function setUserSession($student) {
 
         if (!isset($_SESSION)) {
 
@@ -319,17 +313,16 @@ class Student
         }
         $_SESSION["id"] = $student->id;
         $_SESSION["student_id"] = $student->student_id;
-        $_SESSION["authToken"] =  $student->authToken;       
+        $_SESSION["authToken"] = $student->authToken;
         $_SESSION['login_time'] = time();
     }
 
-    private function setAuthToken($id)
-    {
+    private function setAuthToken($id) {
 
         $authToken = md5(uniqid(rand(), true));
 
         $query = "UPDATE `student` SET `authToken` ='" . $authToken . "' WHERE `id`='" . $id . "'";
-         
+
         $db = new Database();
 
         if ($db->readQuery($query)) {
@@ -340,8 +333,7 @@ class Student
         }
     }
 
-    public function checkRegistrationMobile($phone_number)
-    {
+    public function checkRegistrationMobile($phone_number) {
 
 
         $query = "SELECT `id` FROM `student` WHERE `phone_number`= '" . $phone_number . "'";
@@ -357,8 +349,7 @@ class Student
         }
     }
 
-    public function checkRegistrationEmail($email)
-    {
+    public function checkRegistrationEmail($email) {
 
         $query = "SELECT `id` FROM `student` WHERE `email`= '" . $email . "'";
 
@@ -373,8 +364,7 @@ class Student
         }
     }
 
-    private function setLastLogin($id)
-    {
+    private function setLastLogin($id) {
 
         date_default_timezone_set('Asia/Colombo');
 
@@ -392,8 +382,7 @@ class Student
         }
     }
 
-    public function checkEmail($email)
-    {
+    public function checkEmail($email) {
 
         $query = "SELECT `email`,`student_id`,`phone_number` FROM `student` WHERE (`email`= '" . $email . "' OR `phone_number` = '" . $email . "')";
 
@@ -410,8 +399,7 @@ class Student
         }
     }
 
-    public function getLastStudentId()
-    {
+    public function getLastStudentId() {
         $query = " SELECT `id` FROM `student` ORDER BY `id` DESC LIMIT 1";
         $db = new Database();
         $result = mysqli_fetch_assoc($db->readQuery($query));
@@ -419,14 +407,13 @@ class Student
         return $result['id'];
     }
 
-    public function GenarateCode($email)
-    {
+    public function GenarateCode($email) {
 
         $rand = rand(10000, 99999);
 
         $query = "UPDATE  `student` SET "
-            . "`resetcode` ='" . $rand . "' "
-            . "WHERE `email` = '" . $email . "'";
+                . "`resetcode` ='" . $rand . "' "
+                . "WHERE `email` = '" . $email . "'";
 
         $db = new Database();
 
@@ -439,14 +426,13 @@ class Student
         }
     }
 
-    public function GenarateMobileCode()
-    {
+    public function GenarateMobileCode() {
 
         $rand = rand(10000, 99999);
 
         $query = "UPDATE  `student` SET "
-            . "`phone_code` ='" . $rand . "' "
-            . "WHERE `id` = '" . $this->id . "'";
+                . "`phone_code` ='" . $rand . "' "
+                . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
 
@@ -460,8 +446,7 @@ class Student
     }
 
     //function
-    function sendSMS($sender_id, $phone_number, $message)
-    {
+    function sendSMS($sender_id, $phone_number, $message) {
 
         $data = array(
             'user_id' => '104152',
@@ -487,8 +472,7 @@ class Student
         }
     }
 
-    public function SelectForgetUser($email)
-    {
+    public function SelectForgetUser($email) {
 
         if ($email) {
 
@@ -507,8 +491,7 @@ class Student
         }
     }
 
-    public function SelectResetCode($code)
-    {
+    public function SelectResetCode($code) {
 
         $query = "SELECT `id` FROM `student` WHERE `resetcode`= '" . $code . "'";
 
@@ -523,14 +506,13 @@ class Student
         }
     }
 
-    public function updatePassword($password, $code)
-    {
+    public function updatePassword($password, $code) {
 
         $enPass = md5($password);
 
         $query = "UPDATE  `student` SET "
-            . "`password` ='" . $enPass . "' "
-            . "WHERE `resetcode` = '" . $code . "'";
+                . "`password` ='" . $enPass . "' "
+                . "WHERE `resetcode` = '" . $code . "'";
 
         $db = new Database();
 
@@ -545,19 +527,17 @@ class Student
         }
     }
 
-    public function update()
-    {
+    public function update() {
 
         $query = "UPDATE  `student` SET "
-            . "`full_name` ='" . $this->full_name . "', "
-            . "`nic_number` ='" . $this->nic_number . "', "
-            . "`gender` ='" . $this->gender . "', "
-            . "`age` ='" . $this->age . "', "
-            . "`phone_number` ='" . $this->phone_number . "', "
-            . "`address` ='" . $this->address . "', "
-            . "`email` ='" . $this->email . "' "
-            . "WHERE `id` = '" . $this->id . "'";
-
+                . "`full_name` ='" . $this->full_name . "', "
+                . "`nic_number` ='" . $this->nic_number . "', "
+                . "`gender` ='" . $this->gender . "', "
+                . "`age` ='" . $this->age . "', "
+                . "`phone_number` ='" . $this->phone_number . "', "
+                . "`address` ='" . $this->address . "', "
+                . "`email` ='" . $this->email . "' "
+                . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
 
@@ -572,8 +552,7 @@ class Student
         }
     }
 
-    public function sendStudentRegistrationEmail()
-    {
+    public function sendStudentRegistrationEmail() {
 
         $to = '<' . $this->email . '>';
         $subject = 'Your Registration is Successful!. - SLYSC.lk';
@@ -585,8 +564,8 @@ class Student
 
         // Create email headers
         $headers .= 'From: ' . $from . "\r\n" .
-            'Reply-To: ' . $from . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+                'Reply-To: ' . $from . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
 
         // Compose a simple HTML email message
         $message = '<html>';
@@ -606,8 +585,6 @@ class Student
         $message .= '</body>';
         $message .= '</html>';
 
-
-
         if (mail($to, $subject, $message, $headers)) {
             return TRUE;
         } else {
@@ -615,20 +592,18 @@ class Student
         }
     }
 
-    public function updateActiveStudent()
-    {
+    public function updateActiveStudent() {
 
         $query = "UPDATE  `student` SET "
-            . "`full_name` ='" . $this->full_name . "', "
-            . "`nic_number` ='" . $this->nic_number . "', "
-            . "`gender` ='" . $this->gender . "', "
-            . "`age` ='" . $this->age . "', "
-            . "`phone_number` ='" . $this->phone_number . "', "
-            . "`address` ='" . $this->address . "', "
-            . "`email` ='" . $this->email . "', "
-            . "`status` ='" . $this->status . "' "
-            . "WHERE `id` = '" . $this->id . "'";
-
+                . "`full_name` ='" . $this->full_name . "', "
+                . "`nic_number` ='" . $this->nic_number . "', "
+                . "`gender` ='" . $this->gender . "', "
+                . "`age` ='" . $this->age . "', "
+                . "`phone_number` ='" . $this->phone_number . "', "
+                . "`address` ='" . $this->address . "', "
+                . "`email` ='" . $this->email . "', "
+                . "`status` ='" . $this->status . "' "
+                . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
 
@@ -642,4 +617,5 @@ class Student
             return FALSE;
         }
     }
+
 }

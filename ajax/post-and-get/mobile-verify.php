@@ -28,7 +28,7 @@ if ($_POST['action'] === 'MOBILEVERYFY') {
     if ($CHECK_CODE == 'true') {
         $STUDENT->phone_verification = 1;
         $STUDENT->updateMobileVerification();
-
+        $STUDENT->login2($STUDENT->student_id, $STUDENT->password);
         $response['status'] = 'success';
         echo json_encode($response);
         exit();

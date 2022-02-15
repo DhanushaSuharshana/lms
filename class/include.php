@@ -10,6 +10,7 @@ include_once(dirname(__FILE__) . '/District.php');
 include_once(dirname(__FILE__) . '/Upload.php'); 
 include_once(dirname(__FILE__) . '/Setting.php');
 include_once(dirname(__FILE__) . '/Course.php');
+include_once(dirname(__FILE__) . '/StudentRegistration.php');
 
 function dd($data) {
 
@@ -25,7 +26,6 @@ function redirect($url) {
     $string .= 'window.location = "' . $url . '"';
 
     $string .= '</script>';
-
 
 
     echo $string;
